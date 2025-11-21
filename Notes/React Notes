@@ -1,0 +1,12 @@
+Pacotes
+    node_modules -> pacotes usados no node 
+    public -> public assets 
+    src -> código da aplicação
+    index.html -> div root e main.tsx
+    pachage.json -> info do projeto, dependências 
+    tsconfig.json -> configuração do TS e jS
+    vite.config.ts -> configuração do vite
+
+extenção
+    ts -> typescript bruto
+    tsx -> TS com react 
