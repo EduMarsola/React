@@ -70,7 +70,7 @@ function ListGroupEventHandler() {
   );
 }
 
-function ListGroup() {
+function ListGroupHook() {
   let items = [ 'NY', 'SF', 'TK', 'SP' ]
   const [selectedIndex, setSelectedIndex] = useState(-1)
   useState("",)
@@ -92,4 +92,72 @@ function ListGroup() {
     </>
   );
 }
+
+interface PropsAtributtes{
+    items: string[];
+    heading: string;
+}
+
+function ListGroupProps({items, heading} : PropsAtributtes) {
+  
+  
+  const [selectedIndex, setSelectedIndex] = useState(-1)
+  useState("",)
+  return(
+      <>
+        <h1>{heading}</h1>
+        { items.length === 0 && <p>No Item Found</p>}
+        <ul className="list-group">
+            {items.map((item, index) => 
+              <li 
+                className={ selectedIndex === index 
+                            ? "list-group-item active" 
+                            : "list-group-item"} 
+                key={item} 
+                onClick={() => setSelectedIndex(index)}>{item}
+              </li>)
+            } 
+        </ul>
+    </>
+  );
+}
+
+
+interface PropsFunctions{
+    items: string[];
+    heading: string;
+    onSelectItem : (item:string) => void;
+}
+
+function ListGroup({items, heading, onSelectItem} : PropsFunctions) {
+  
+  
+  const [selectedIndex, setSelectedIndex] = useState(-1)
+  useState("",)
+  return(
+      <>
+        <h1>{heading}</h1>
+        { items.length === 0 && <p>No Item Found</p>}
+        <ul className="list-group">
+            {items.map((item, index) => 
+              <li 
+                className={ selectedIndex === index 
+                            ? "list-group-item active" 
+                            : "list-group-item"} 
+                key={item} 
+                onClick={
+                  () => {
+                    setSelectedIndex(index);
+                    onSelectItem(item);
+                  }
+                }
+              >
+                    {item}
+              </li>)
+            } 
+        </ul>
+    </>
+  );
+}
+
 export default ListGroup;
